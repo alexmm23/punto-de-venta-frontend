@@ -1,0 +1,41 @@
+#root {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  padding: 80px;
+  width: 80%; 
+  max-width: 400px;
+}
+
+.form > * {
+  margin: 15px;
+}
+
+.form-input {
+  width: 75%;
+  max-width: 100%; 
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #CCC;
+  height: 20px;
+}
+.login-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  padding: 80px;
+  width: 80%; 
+  max-width: 400px;
+}
