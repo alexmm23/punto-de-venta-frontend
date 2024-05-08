@@ -63,7 +63,10 @@ function Form() {
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    login({ email: name, password });
+    const isAuthorized = await login({ email: name, password });
+    if (isAuthorized) {
+      setShowData(true);
+    }
   };
 
   return (
