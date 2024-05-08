@@ -6,9 +6,9 @@ function App() {
   return (
     <>
       <section className="login-section">
-        <Header title="Login page" />
+        <Header title="Login" />
         <Form />
-      </section>  
+      </section>
     </>
   );
 }

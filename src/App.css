@@ -13,7 +13,7 @@
   align-items: center;
   border-radius: 8px;
   padding: 80px;
-  width: 80%; 
+  width: 80%;
   max-width: 400px;
 }
 
@@ -23,19 +23,41 @@
 
 .form-input {
   width: 75%;
-  max-width: 100%; 
+  max-width: 100%;
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #CCC;
+  border: 1px solid #ccc;
   height: 20px;
 }
-.login-section{
+.login-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 8px;
   padding: 80px;
-  width: 80%; 
+  width: 80%;
   max-width: 400px;
+}
+.products-section {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-card {
+  border: #ccc 1px solid;
+  box-shadow: initial 0px 0px 5px 0px;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.product-card > * {
+  display: flex;
+  margin: 15px;
+}
+.product-card > p > span {
+  font-weight: bold;
+  color: aquamarine;
 }
