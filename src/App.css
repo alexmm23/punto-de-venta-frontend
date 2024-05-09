@@ -44,6 +44,7 @@
   gap: 20px;
   justify-content: center;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 .product-card {
@@ -60,4 +61,25 @@
 .product-card > p > span {
   font-weight: bold;
   color: aquamarine;
+}
+
+.categories-section {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.categories-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  list-style-type: none;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.categories-list li {
+  flex: 1 0 90px;
+  text-align: center;
 }
