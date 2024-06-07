@@ -1,14 +1,15 @@
 import "./App.css";
-import Header from "./components/Header";
-import Form from "./components/Form";
+import { Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
 
 function App() {
   return (
     <>
-      <section className="login-section">
-        <Header title="Login" />
-        <Form />
-      </section>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
     </>
   );
 }

@@ -1,10 +1,10 @@
-#root {
+/* #root {
   min-height: 100vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-}
+} */
 
 .form {
   display: flex;
@@ -31,6 +31,7 @@
 }
 .login-section {
   display: flex;
+  margin: 0 auto;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -82,4 +83,40 @@
 .categories-list li {
   flex: 1 0 90px;
   text-align: center;
+}
+.section-center {
+  margin: 0 auto;
+}
+.text-center {
+  text-align: center;
+}
+
+.navigationBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  color: aquamarine;
+  border-bottom: 1px solid #ccc;
+}
+.navigationBar > ul {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  list-style-type: none;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.error-pill {
+  background-color: #f5e8e9;
+  width: 80%;
+  text-align: center;
+  font-weight: bold;
+  color: #700e18;
+  padding: 7px;
+  border-radius: 8px;
+  border-color: #700e18;
+  margin: 10px;
 }
