@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import Data from "./Data";
-const URL_API = "http://localhost:3010/api";
-
+import { URL_API } from "../config/constants";
+import ErrorPill from "./ErrorPill";
+import { useNavigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
 function Form() {
   const [name, setName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [showData, setShowData] = useState<boolean>(false);
-  const [products, setProducts] = useState<Array<Object>>([]);
-  const [categories, setCategories] = useState<Array<Object>>([]);
+  const [showError, setShowError] = useState<boolean>(false);
+  const navigate = useNavigate();
   const login = async ({
     email,
     password,
@@ -23,13 +23,11 @@ function Form() {
       body: JSON.stringify({ email, password }),
     });
     if (response.status === 200) {
-      alert("Login successful");
+      //alert("Login successful");
       const data = await response.json();
       localStorage.setItem("token", data.token);
       console.log(data);
       return true;
-    } else {
-      alert("Login failed: " + response.status);
     }
     return false;
   };
@@ -42,7 +40,7 @@ function Form() {
     });
     if (response.status === 200) {
       const data = await response.json();
-      setProducts(data);
+      // setProducts(data);
     } else {
       alert("Unauthorized");
     }
@@ -53,7 +51,7 @@ function Form() {
     });
     if (response.status === 200) {
       const data = await response.json();
-      setCategories(data);
+      //setCategories(data);
     } else {
       alert("Categories not found");
     }
@@ -63,54 +61,29 @@ function Form() {
     console.log("Form component mounted");
     const token = localStorage.getItem("token");
     console.log(token);
-    fetchCategories();
     if (token != null) {
-      setShowData(true);
-      fetchProducts();
-    } else {
-      setShowData(false);
+      //Redirect to products page
+      navigate("/dashboard");
     }
     return () => {
       console.log("Form component unmounted");
     };
-  }, [showData]);
+  }, []);
 
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     const isAuthorized = await login({ email: name, password });
     if (isAuthorized) {
-      setShowData(true);
       setName("");
       setPassword("");
-      console.log(name, password);
+      navigate("/dashboard");
+    } else {
+      setShowError(true);
     }
   };
 
   return (
     <>
-      {showData && (
-        <section className="products-section">
-          {products.map((product: any, index: number) => (
-            <Data
-              key={index}
-              name={product.name}
-              category={product.category.name}
-              price={product.unitPrice}
-            />
-          ))}
-        </section>
-      )}
-      <h3>Categorías (Endpoint desprotegido)</h3>
-      <section className="categories-section">
-        <ul className="categories-list">
-          {categories.map((category: any, index: number) => (
-            <li key={index}>
-              {category.name.charAt(0).toUpperCase() + category.name.slice(1)}
-            </li>
-          ))}
-        </ul>
-      </section>
-
       <form className="form" onSubmit={handleSubmit}>
         <input
           type="text"
@@ -126,6 +99,7 @@ function Form() {
           onChange={(event) => setPassword(event.target.value)}
           value={password}
         />
+        {showError && <ErrorPill message="Login failed!" />}
         <button type="submit">Login</button>
       </form>
     </>

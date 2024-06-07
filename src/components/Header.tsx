@@ -3,7 +3,7 @@ export type HeaderProps = {
 };
 function Header({ title }: HeaderProps) {
   return (
-    <header>
+    <header className="text-center">
       <h1>{title}</h1>
     </header>
   );
