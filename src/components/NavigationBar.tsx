@@ -4,7 +4,7 @@ function NavigationBar() {
   const navigate = useNavigate();
   const handleClick = () => {
     localStorage.removeItem("token");
-    navigate("/dashboard");
+    navigate("/");
   };
   return (
     <nav className="navigationBar">
