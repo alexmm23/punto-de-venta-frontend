@@ -22,3 +22,17 @@ export const login = async ({
   }
   return false;
 };
+export const formatPrice = (number: number) => {
+  return new Intl.NumberFormat("es-ES", {
+    style: "currency",
+    currency: "MXN",
+  }).format(number);
+};
+
+export const getTokenFromLocalStorage = () => {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    return null;
+  }
+  return token;
+};

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import logoutLogo from "../assets/img/cerrar-sesion.webp";
 function NavigationBar() {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -10,17 +11,23 @@ function NavigationBar() {
     <nav className="navigationBar">
       <ul>
         <li>
-          <Link to="/dashboard">Home</Link>
+          <Link className="text-aquamarine" to="/dashboard">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/products">Products</Link>
+          <Link className="text-aquamarine" to="/products">
+            Products
+          </Link>
         </li>
         <li>
-          <Link to="/categories">Categories</Link>
+          <Link className="text-aquamarine" to="/categories">
+            Categories
+          </Link>
         </li>
         <li>
           <button className="btn btn-logout" onClick={handleClick}>
-            Cerrar sesión
+            <img src={logoutLogo} alt="Icono de cierre de sesion" />
           </button>
         </li>
       </ul>
