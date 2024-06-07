@@ -1,7 +1,7 @@
 import Header from "../components/Header";
-import NavigationBar from "../components/NavigationBar";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import DashboardLayout from "../layout/DashboardLayout";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -14,8 +14,10 @@ function Dashboard() {
 
   return (
     <section>
-      <NavigationBar />
-      <Header title="Dashboard" />
+      <DashboardLayout>
+        <Header title="Dashboard" />
+        <p>Hello world!</p>
+      </DashboardLayout>
     </section>
   );
 }
