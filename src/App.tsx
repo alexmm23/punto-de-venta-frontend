@@ -4,6 +4,7 @@ import Dashboard from "./pages/Dashboard";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import Products from "./pages/Products";
+import Categories from "./pages/Categories";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/login" element={<Login />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/categories" element={<Categories />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
