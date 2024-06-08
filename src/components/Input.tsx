@@ -38,6 +38,7 @@ export function Input({
           name={name}
           onChange={handleOnChange}
           autoComplete="on"
+          {...((type === "number" || type === "currency") && { min: 0 })}
         />
         {type === "currency" && (
           <span className="currency text-center">
