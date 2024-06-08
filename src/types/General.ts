@@ -25,8 +25,13 @@ export type StyleProps = {
   className: string;
 };
 export type SelectProps = {
-  options: { value: string; label: string }[];
+  options: Option[];
   value: string;
   name: string;
   label?: string;
+};
+
+export type Option = {
+  value: string;
+  label: string;
 };

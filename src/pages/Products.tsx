@@ -10,8 +10,10 @@ import Input from "../components/Input";
 import FormCreate from "../components/FormCreate";
 import { handleShowModal, handleCloseModal } from "../utils/functions";
 import Select from "../components/Select";
+import { Option } from "../types/General";
 function Products() {
   const [products, setProducts] = useState<Array<Object>>([]);
+  const [categories, setCategories] = useState<Array<Option>>([]);
   const token = getTokenFromLocalStorage();
 
   const navigate = useNavigate();
@@ -24,15 +26,35 @@ function Products() {
     });
     if (response.status === 200) {
       const data = await response.json();
-      console.log(data);
       setProducts(data);
     }
   };
+  const fetchCategories = async () => {
+    const response = await fetch(`${URL_API}/v1/categories`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (response.status === 200) {
+      const data = await response.json();
+      const options = data.map((category: any) => {
+        return {
+          label: category.name,
+          value: category.name,
+        };
+      });
+      setCategories(options);
+      console.log(data);
+    }
+  };
+
   useEffect(() => {
     if (!token) {
       navigate("/");
     }
     fetchProducts();
+    fetchCategories();
   }, []);
   return (
     <DashboardLayout>
@@ -77,7 +99,7 @@ function Products() {
               </section>
               <section>
                 <Select
-                  options={[{ label: "prueba", value: "0" }]}
+                  options={categories}
                   value="-"
                   label="Categoria"
                   name="category"

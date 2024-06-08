@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function FormCreate({ children, className }: GenericElementProps & StyleProps) {
   const [error, setError] = useState<boolean>(false);
-  const handleOnSubmit = (event: React.FormEvent) => {
+  const handleOnSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setError(false);
     //Get all the data from children in the form
@@ -18,7 +18,13 @@ function FormCreate({ children, className }: GenericElementProps & StyleProps) {
       return;
     }
     //Send the data to the server
-    postData(data);
+    const response = await postData(data, "products");
+    if (response.status === 200) {
+      //Render all the products updated
+      window.location.reload();
+    } else {
+      setError(true);
+    }
   };
   return (
     <form method="POST" onSubmit={handleOnSubmit} className={className}>
