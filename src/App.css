@@ -1,5 +1,23 @@
-body {
+html {
   min-height: 100vh;
+  position: relative;
+}
+
+body {
+  margin: 0;
+  margin-bottom: 40px;
+  min-height: 100vh;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
 .form {
   display: flex;
@@ -48,11 +66,13 @@ body {
   box-shadow: initial 0px 0px 5px 0px;
   border-radius: 8px;
   padding: 20px;
+  width: max-content;
 }
 
 .product-card > * {
   display: flex;
   margin: 15px;
+  padding: 5px;
 }
 .product-card > p > span {
   font-weight: bold;
@@ -83,8 +103,64 @@ body {
   margin: 0 auto;
   width: 80%;
 }
+.d-flex {
+  display: flex;
+}
+.gap-10 {
+  gap: 10px;
+}
+.flex-column {
+  flex-direction: column;
+}
+.justify-center {
+  justify-content: center;
+}
+.flex-wrap-row {
+  flex-wrap: wrap;
+  flex: 1 0 50%;
+}
+.space-between {
+  justify-content: space-between;
+}
+.space-around {
+  justify-content: space-around;
+}
+.align-center {
+  align-items: center;
+}
+.align-self-center {
+  align-self: center;
+}
+.w-100 {
+  width: 100%;
+}
+.w-80 {
+  width: 80%;
+}
+.ml-10 {
+  margin-left: 10px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+.w-80 {
+  width: 80%;
+}
 .text-center {
   text-align: center;
+}
+.invalid-feedback {
+  color: #700e18;
+  border: 1px solid #700e18;
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: bold;
+}
+.warning-feedback {
+  color: #bd7100;
+  padding: 7px;
+  border-radius: 8px;
+  margin: 10px;
 }
 
 .navigationBar {
@@ -138,6 +214,20 @@ body {
   justify-content: space-between;
   align-items: center;
   margin: 10px;
+  flex-wrap: wrap;
+}
+/*Hacer que cuando row tenga mas de 4 elementos, se haga otra fila*/
+.row > * {
+  flex: 1 0 20%;
+  margin: 5px;
+}
+.btn-submit {
+  background-color: #404be9;
+  color: white;
+  padding: 10px;
+  margin: 5px;
+  border: none;
+  cursor: pointer;
 }
 
 .btn-logout {
@@ -162,4 +252,93 @@ img {
   display: flex;
   flex-direction: column;
   align-self: center;
+}
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.modal-content {
+  background-color: #0c0c0c;
+  margin: 20% 0 5% 0;
+  padding: 60px;
+  border: 1px solid #888;
+  border-radius: 15px;
+  width: 40%;
+  color: #ccc;
+  transform: translateY(-100%);
+  transition: transform 0.5s ease;
+}
+.show {
+  z-index: 1;
+  opacity: 1;
+}
+.hide {
+  z-index: -1;
+  opacity: 0;
+}
+
+/* Show modal content */
+.show .modal-content {
+  transform: translateY(0);
+}
+
+/* Hide modal content */
+.hide .modal-content {
+  transform: translateY(-100%);
+}
+.close-btn {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+.close-btn:hover,
+.close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.form-label {
+  font-weight: bold;
+}
+.input-text {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  height: 20px;
+  width: 100%;
+}
+.input-number {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  height: 20px;
+  width: 100%;
+}
+.select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  color: #ccc;
+  height: 40px;
+  width: 100%;
+}
+.currency {
+  background-color: #333;
+  color: #ccc;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 9px;
+  cursor: default;
 }
