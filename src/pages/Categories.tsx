@@ -32,9 +32,11 @@ function Categories() {
   return (
     <DashboardLayout>
       <Header title="Categories" />
-      {categories.map((category: Category) => (
-        <CategoryCard key={category._id} category={category} />
-      ))}
+      <section className="row">
+        {categories.map((category: Category) => (
+          <CategoryCard key={category._id} category={category} />
+        ))}
+      </section>
     </DashboardLayout>
   );
 }
