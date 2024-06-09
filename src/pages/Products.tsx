@@ -33,7 +33,7 @@ function Products() {
     }
   };
   const fetchCategories = async () => {
-    const response = await fetch(`${URL_API}/v1/categories`, {
+    const response = await fetch(`${URL_API}/v1/categories/getNames`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
