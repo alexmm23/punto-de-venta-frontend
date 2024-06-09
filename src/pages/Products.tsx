@@ -3,7 +3,7 @@ import { URL_API } from "../config/constants";
 import Header from "../components/Header";
 import DashboardLayout from "../layout/DashboardLayout";
 import ProductCard from "../components/ProductCard";
-import { getTokenFromLocalStorage } from "../utils/functions";
+import { getTokenFromLocalStorage, postData } from "../utils/functions";
 import { useNavigate } from "react-router-dom";
 import Modal from "../components/Modal";
 import Input from "../components/Input";
@@ -11,9 +11,11 @@ import FormCreate from "../components/FormCreate";
 import { handleShowModal, handleCloseModal } from "../utils/functions";
 import Select from "../components/Select";
 import { Option } from "../types/General";
+import { Product } from "../types/Product";
 function Products() {
-  const [products, setProducts] = useState<Array<Object>>([]);
+  const [products, setProducts] = useState<Array<Product>>([]);
   const [categories, setCategories] = useState<Array<Option>>([]);
+  const [editProduct, setEditProduct] = useState<Product | null>(null);
   const token = getTokenFromLocalStorage();
 
   const navigate = useNavigate();
@@ -26,6 +28,7 @@ function Products() {
     });
     if (response.status === 200) {
       const data = await response.json();
+      console.log(data);
       setProducts(data);
     }
   };
@@ -45,8 +48,58 @@ function Products() {
         };
       });
       setCategories(options);
-      console.log(data);
     }
+  };
+  const handleDeleteProduct = async (_id: string) => {
+    const response = await fetch(`${URL_API}/v1/products/${_id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.status === 200) {
+      setProducts(products.filter((product) => product._id !== _id));
+    }
+  };
+
+  const handleEditProduct = (_id: string) => {
+    const product = products.find((p) => p._id === _id);
+    console.log(product);
+    if (!product) return console.log("Product not found");
+    setEditProduct(product);
+    handleShowModal();
+  };
+
+  useEffect(() => {
+    if (!token) {
+      navigate("/");
+    }
+    fetchProducts();
+    fetchCategories();
+  }, []);
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const form = document.querySelector("form") as HTMLFormElement;
+    const entries = new FormData(form).entries();
+    const requestBody = Object.fromEntries(entries);
+    const endpoint = editProduct ? `products/${editProduct._id}` : "products";
+    const method = editProduct ? "PUT" : "POST";
+    const response = await postData(requestBody, endpoint, method);
+    if (response) {
+      const newProduct = response;
+      if (editProduct) {
+        setProducts(
+          products.map(
+            (p): Product => (p._id === newProduct._id ? newProduct : p)
+          )
+        );
+        setEditProduct(null);
+      } else {
+        setProducts([...products, newProduct]);
+      }
+    }
+    handleCloseModal();
   };
 
   useEffect(() => {
@@ -67,17 +120,22 @@ function Products() {
           {products.map((product: any) => (
             <ProductCard
               key={product._id}
+              _id={product._id}
               name={product.name}
               category={product.category.name}
               price={product.unitPrice}
+              onEdit={handleEditProduct}
+              onDelete={handleDeleteProduct}
             />
           ))}
         </section>
         <Modal onClick={handleCloseModal}>
           <header>
-            <h2 className="text-center">Agregar producto</h2>
+            <h2 className="text-center">
+              {editProduct ? "Editar Producto" : "Agregar Producto"}
+            </h2>
           </header>
-          <FormCreate className="">
+          <FormCreate className="" onSubmit={handleSubmit}>
             <div className="d-flex flex-column">
               <section>
                 <Input
@@ -86,6 +144,7 @@ function Products() {
                   className="input-text flex-wrap-row"
                   name="name"
                   label="Nombre"
+                  value={editProduct ? editProduct.name : ""}
                 />
               </section>
               <section>
@@ -95,12 +154,13 @@ function Products() {
                   className="input-text"
                   name="description"
                   label="Descripcion"
+                  value={editProduct ? editProduct.description : ""}
                 />
               </section>
               <section>
                 <Select
                   options={categories}
-                  value="-"
+                  value={editProduct ? editProduct.category.name : ""}
                   label="Categoria"
                   name="category"
                 />
@@ -112,6 +172,7 @@ function Products() {
                   className="input-number"
                   name="unitCost"
                   label="Costo unitario"
+                  value={editProduct ? editProduct.unitCost.toString() : ""}
                 />
                 <Input
                   type="currency"
@@ -119,6 +180,7 @@ function Products() {
                   className="input-number"
                   name="unitPrice"
                   label="Precio unitario"
+                  value={editProduct ? editProduct.unitPrice.toString() : ""}
                 />
               </section>
               <section className="d-flex gap-10">
@@ -128,6 +190,7 @@ function Products() {
                   className="input-number"
                   name="quantity"
                   label="Cantidad"
+                  value={editProduct ? editProduct.quantity.toString() : ""}
                 />
                 <Input
                   type="text"
@@ -135,6 +198,7 @@ function Products() {
                   className="input-text"
                   name="measureUnit"
                   label="Unidad de medida"
+                  value={editProduct ? editProduct.measureUnit : ""}
                 />
               </section>
             </div>

@@ -9,7 +9,7 @@ function Select({ options, value, name, label }: SelectProps) {
     console.log(value);
   };
   useEffect(() => {
-    setInputValue(value);
+    setInputValue(value ? value : "-1");
   }, [value]);
   return (
     <>
@@ -23,7 +23,7 @@ function Select({ options, value, name, label }: SelectProps) {
         id={name}
         className="select"
         onChange={handleOnChange}
-        defaultValue={inputValue}
+        value={inputValue}
       >
         <option value="-1">--Selecciona una opcion--</option>
         {options.map((option) => (

@@ -45,14 +45,27 @@ export const handleShowModal = () => {
 };
 export const handleCloseModal = () => {
   const modal = document.querySelector(".modal");
+  const inputs = document.querySelectorAll("input");
+  const select = document.querySelector("select");
+  if (select) {
+    select.value = "-1";
+    select.selectedIndex = 0;
+  }
+  inputs.forEach((input) => {
+    input.value = "";
+  });
   if (modal) {
     modal.classList.remove("show");
     modal.classList.add("hide");
   }
 };
-export const postData = async (data: Object, enpoint: string) => {
+export const postData = async (
+  data: Object,
+  enpoint: string,
+  method: string
+) => {
   const response = await fetch(`${URL_API}/v1/${enpoint}`, {
-    method: "POST",
+    method: method,
     headers: {
       "Content-Type": "application/json",
       authorization: `Bearer ${getTokenFromLocalStorage()}`,
@@ -60,8 +73,10 @@ export const postData = async (data: Object, enpoint: string) => {
     body: JSON.stringify(data),
   });
   const jsonData = await response.json();
-  if (response.status === 200) {
+  if (response.status === 200 || response.status === 201) {
     return jsonData;
+  } else {
+    return null;
   }
 };
 export const validateForm = (data: Object) => {

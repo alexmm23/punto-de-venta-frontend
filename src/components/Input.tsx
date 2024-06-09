@@ -1,5 +1,5 @@
 import { InputProps, StyleProps } from "../types/General";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export function Input({
   type,
   placeholder,
@@ -16,6 +16,9 @@ export function Input({
     }
     setInputValue(value);
   };
+  useEffect(() => {
+    setInputValue(value ? value : "");
+  }, [value]);
   return (
     <div className={type === "currency" ? "w-80" : "w-100"}>
       {label && (
