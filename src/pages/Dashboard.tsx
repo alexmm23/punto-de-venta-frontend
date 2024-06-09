@@ -16,7 +16,11 @@ function Dashboard() {
     <section>
       <DashboardLayout>
         <Header title="Dashboard" />
-        <p>Hello world!</p>
+        <p className="text-center">Bienvenido a tu panel de administrador</p>
+        <p className="text-center">
+          Navega por las pestañas para agregar, modificar o eliminar productos o
+          categorías.
+        </p>
       </DashboardLayout>
     </section>
   );

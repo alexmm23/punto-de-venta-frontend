@@ -1,7 +1,7 @@
 function Footer() {
   return (
     <footer>
-      <p>Copyright </p>
+      <p>Copyright - Adrian Alejandro Montes Mendoza</p>
     </footer>
   );
 }
