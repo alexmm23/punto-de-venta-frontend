@@ -342,3 +342,12 @@ img {
   padding: 9px;
   cursor: default;
 }
+.btn-delete {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.btn-delete:hover {
+  background-color: #a41e2d;
+}
