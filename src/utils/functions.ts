@@ -36,15 +36,7 @@ export const getTokenFromLocalStorage = () => {
   }
   return token;
 };
-export const handleShowModal = () => {
-  const modal = document.querySelector(".modal");
-  if (modal) {
-    modal.classList.add("show");
-    modal.classList.remove("hide");
-  }
-};
-export const handleCloseModal = () => {
-  const modal = document.querySelector(".modal");
+export const cleanFormInputs = () => {
   const inputs = document.querySelectorAll("input");
   const select = document.querySelector("select");
   if (select) {
@@ -54,6 +46,18 @@ export const handleCloseModal = () => {
   inputs.forEach((input) => {
     input.value = "";
   });
+};
+export const handleShowModal = () => {
+  const modal = document.querySelector(".modal");
+  cleanFormInputs();
+  if (modal) {
+    modal.classList.add("show");
+    modal.classList.remove("hide");
+  }
+};
+export const handleCloseModal = () => {
+  const modal = document.querySelector(".modal");
+  cleanFormInputs();
   if (modal) {
     modal.classList.remove("show");
     modal.classList.add("hide");
