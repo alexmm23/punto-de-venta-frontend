@@ -33,14 +33,14 @@ function Categories() {
     }
   };
   const handleDeleteCategory = async (_id: string) => {
-    const response = await fetch(`${URL_API}/v1/category/${_id}`, {
+    const response = await fetch(`${URL_API}/v1/categories/${_id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    if (response.status === 200) {
+    if (response.status === 204) {
       setCategories(categories.filter((Category) => Category._id !== _id));
     }
   };

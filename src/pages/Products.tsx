@@ -58,7 +58,7 @@ function Products() {
       },
     });
 
-    if (response.status === 200) {
+    if (response.status === 204) {
       setProducts(products.filter((product) => product._id !== _id));
     }
   };
