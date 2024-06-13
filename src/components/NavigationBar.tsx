@@ -12,17 +12,17 @@ function NavigationBar() {
       <ul>
         <li>
           <Link className="text-aquamarine" to="/dashboard">
-            Home
+            Inicio
           </Link>
         </li>
         <li>
           <Link className="text-aquamarine" to="/products">
-            Products
+            Productos
           </Link>
         </li>
         <li>
           <Link className="text-aquamarine" to="/categories">
-            Categories
+            Categorías
           </Link>
         </li>
         <li>

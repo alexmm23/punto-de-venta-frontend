@@ -15,7 +15,7 @@ function Dashboard() {
   return (
     <section>
       <DashboardLayout>
-        <Header title="Dashboard" />
+        <Header title="Panel de administrador" />
         <p className="text-center">Bienvenido a tu panel de administrador</p>
         <p className="text-center">
           Navega por las pestañas para agregar, modificar o eliminar productos o
