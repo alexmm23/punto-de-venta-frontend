@@ -100,7 +100,7 @@ function Categories() {
       </section>
       <Modal onClick={handleCloseModal}>
         <FormCreate className="" onSubmit={handleSubmit}>
-          <h2>Create Category</h2>
+          <h2>{editCategory ? "Editar categoría" : "Crear categoría"}</h2>
           <Input
             className="input-text"
             type="text"

@@ -122,7 +122,7 @@ function Products() {
               key={product._id}
               _id={product._id}
               name={product.name}
-              category={product.category.name}
+              category={product.category ? product.category.name : ""}
               price={product.unitPrice}
               onEdit={handleEditProduct}
               onDelete={handleDeleteProduct}
@@ -160,7 +160,7 @@ function Products() {
               <section>
                 <Select
                   options={categories}
-                  value={editProduct ? editProduct.category.name : ""}
+                  value={editProduct?.category ? editProduct.category.name : ""}
                   label="Categoria"
                   name="category"
                 />

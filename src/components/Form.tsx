@@ -49,7 +49,7 @@ function Form() {
           onChange={(event) => setPassword(event.target.value)}
           value={password}
         />
-        {showError && <ErrorPill message="Login failed!" />}
+        {showError && <ErrorPill message="Usuario o contraseña incorrectos!" />}
         <button type="submit">Login</button>
       </form>
     </>
